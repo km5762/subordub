@@ -11,13 +11,3 @@
   appearance: textfield;
   outline-offset: -2px; /* Fix outline style in Safari */
 }
-
-@layer base {
-  :root {
-    color: white;
-  }
-
-  body {
-    @apply bg-zinc-900;
-  }
-}
