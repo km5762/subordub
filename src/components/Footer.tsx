@@ -3,7 +3,7 @@ import { GitHub } from "react-feather";
 
 export default function Footer() {
   return (
-    <footer className="bg-zinc-800 p-2 text-center text-sm font-thin">
+    <footer className="bg-zinc-800 p-2 text-center text-sm font-thin border-zinc-700 border-solid border-t">
       Made by
       <a
         href="https://github.com/km5762"

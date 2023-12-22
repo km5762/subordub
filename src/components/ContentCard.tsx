@@ -17,7 +17,7 @@ export default function ContentCard({
     <Link
       href={"/shows/1"}
       className={
-        "inline-block bg-zinc-800 mr-4 last:mr-0 relative w-40 h-60 rounded-lg p-1 cursor-pointer shadow-xl hover:shadow-xl " +
+        "inline-block bg-zinc-800 mr-4 last:mr-0 relative w-40 h-60 rounded-lg p-1 cursor-pointer shadow-xl hover:shadow-xl border-zinc-700 border-solid " +
         className
       }
     >
