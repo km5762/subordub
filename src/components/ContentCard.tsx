@@ -4,11 +4,21 @@ import Image from "next/image";
 interface ContentCardProps {
   image: string;
   index: number;
+  className: string;
 }
 
-export default function ContentCard({ image, index }: ContentCardProps) {
+export default function ContentCard({
+  image,
+  index,
+  className,
+}: ContentCardProps) {
   return (
-    <div className="inline-block bg-zinc-800 mr-4 last:mr-0 relative w-40 h-60 rounded-lg p-1">
+    <div
+      className={
+        "inline-block bg-zinc-800 mr-4 last:mr-0 relative w-40 h-60 rounded-lg p-1 cursor-pointer hover:shadow-xl " +
+        className
+      }
+    >
       <div className="absolute inset-1 bottom-12">
         <Image
           src={image}
