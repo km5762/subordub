@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface ContentCardProps {
   image: string;
@@ -13,9 +14,10 @@ export default function ContentCard({
   className,
 }: ContentCardProps) {
   return (
-    <div
+    <Link
+      href={"/shows/1"}
       className={
-        "inline-block bg-zinc-800 mr-4 last:mr-0 relative w-40 h-60 rounded-lg p-1 cursor-pointer hover:shadow-xl " +
+        "inline-block bg-zinc-800 mr-4 last:mr-0 relative w-40 h-60 rounded-lg p-1 cursor-pointer shadow-xl hover:shadow-xl " +
         className
       }
     >
@@ -30,6 +32,6 @@ export default function ContentCard({
       <span className="absolute bottom-0 font-black text-3xl">
         #{index + 1}
       </span>
-    </div>
+    </Link>
   );
 }
