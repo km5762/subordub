@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Search, ArrowRight } from "react-feather";
+import Link from "next/link";
 
 export default function SearchBar({ className }: { className: string }) {
   const [search, setSearch] = useState("");
@@ -25,7 +26,9 @@ export default function SearchBar({ className }: { className: string }) {
         {search && (
           <div className="absolute z-10 bg-white w-full rounded-b-2xl overflow-hidden shadow-lg">
             <ul className="bg-zinc-800">
-              <li className="hover:bg-zinc-700 pl-8 p-2">1</li>
+              <li className="hover:bg-zinc-700 pl-8 p-2">
+                <Link href={"/content"}>Page</Link>
+              </li>
             </ul>
           </div>
         )}

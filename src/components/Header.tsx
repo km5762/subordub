@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Header() {
   return (
-    <header className="bg-zinc-800 p-6 flex justify-between items-center">
+    <header className="bg-zinc-800/75 p-6 flex justify-between items-center sticky top-0 z-30 backdrop-blur-2xl shadow-xl">
       <h1 className="font-black text-2xl">
         <span className="text-orange-600">Sub</span>
         <span className="">||</span>
