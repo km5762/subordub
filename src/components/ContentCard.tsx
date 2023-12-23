@@ -29,6 +29,14 @@ export default function ContentCard({
           className="object-cover rounded-lg -z-10 bg-white blur-sm"
         />
         <div className="absolute inset-1">
+          <h2
+            className="absolute z-10 text-zinc-800/90 text-5xl font-black"
+            style={{
+              textShadow: "0px 0px 5px rgba(255, 255, 255, 0.8)",
+            }}
+          >
+            #1
+          </h2>
           <Image
             src={image}
             alt={"Content card"}
@@ -38,7 +46,7 @@ export default function ContentCard({
         </div>
       </Link>
       <p className="text-wrap whitespace-normal text-ellipsis overflow-hidden ... max-w-full text-center">
-        #1 Jujutsu Kaisen
+        Jujutsu Kaisen
       </p>
     </div>
   );

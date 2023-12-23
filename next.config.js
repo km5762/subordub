@@ -6,6 +6,7 @@ const nextConfig = {
       "assets.teenvogue.com",
       "m.media-amazon.com",
       "cdn.vox-cdn.com",
+      "upload.wikimedia.org",
     ],
   },
 };
