@@ -17,7 +17,7 @@ export default function ContentCard({
     <Link
       href={"/shows/1"}
       className={
-        "inline-block bg-zinc-800/75 mr-4 last:mr-0 relative w-40 h-60 rounded-lg p-1 cursor-pointer shadow-xl border-zinc-700 border-solid border overflow-hidden hover:shadow-lg transition duration-300 ease-in-out " +
+        "inline-block mr-4 bg-zinc-800/80 last:mr-0 relative w-48 h-60 rounded-lg p-1 cursor-pointer overflow-hidden hover:shadow-lg transition duration-300 ease-in-out " +
         className
       }
     >
@@ -35,9 +35,12 @@ export default function ContentCard({
           className="object-cover rounded-lg border-zinc-700 border-solid border"
         />
       </div>
-      <span className="absolute bottom-0 font-black text-3xl">
-        #{index + 1}
-      </span>
+      <div className="absolute bottom-0 flex">
+        <span className="font-black text-4xl align-middle">#{index + 1}</span>
+        <div className="whitespace-normal ml-1">
+          <span className="font-bold align-top">One Punch Man</span>
+        </div>
+      </div>
     </Link>
   );
 }

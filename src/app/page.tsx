@@ -8,7 +8,7 @@ export default function Home() {
   const images = Array.from(
     { length: 10 },
     (_, index) =>
-      `https://assets.teenvogue.com/photos/615327f812eb503af0cde8b3/1:1/w_3132,h_3132,c_limit/SquidGame_Unit_104_1570.jpg`
+      "https://cdn.vox-cdn.com/thumbor/OaLG8uG4V8Kgb4mKomOktrUgDD0=/0x50:1600x850/fit-in/1200x600/cdn.vox-cdn.com/uploads/chorus_asset/file/24762952/Jujutsu_Kaisen_season_2_01.jpg"
   );
 
   return (
