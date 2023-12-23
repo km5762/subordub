@@ -14,33 +14,32 @@ export default function ContentCard({
   className,
 }: ContentCardProps) {
   return (
-    <Link
-      href={"/shows/1"}
-      className={
-        "inline-block mr-4 bg-zinc-800/80 last:mr-0 relative w-48 h-60 rounded-lg border-solid border-zinc-700 border p-1 cursor-pointer overflow-hidden hover:shadow-lg transition duration-300 ease-in-out " +
-        className
-      }
-    >
-      <Image
-        src={image}
-        alt={"Content card"}
-        fill
-        className="object-cover rounded-lg -z-10 bg-white blur-sm"
-      />
-      <div className="absolute inset-1 bottom-12">
+    <div className="inline-block mr-4 last:mr-0 w-40">
+      <Link
+        href={"/shows/1"}
+        className={
+          "inline-block bg-zinc-800/60 w-full relative h-60 rounded-lg border-solid border-zinc-700 border p-1 cursor-pointer hover:shadow-lg transition duration-300 ease-in-out " +
+          className
+        }
+      >
         <Image
           src={image}
           alt={"Content card"}
           fill
-          className="object-cover rounded-lg border-zinc-700 border-solid border"
+          className="object-cover rounded-lg -z-10 bg-white blur-sm"
         />
-      </div>
-      <div className="absolute bottom-0 flex">
-        <span className="font-black text-4xl align-middle">#{index + 1}</span>
-        <div className="whitespace-normal ml-1">
-          <span className="font-bold align-top">One Punch Man</span>
+        <div className="absolute inset-1">
+          <Image
+            src={image}
+            alt={"Content card"}
+            fill
+            className="object-cover rounded-lg border-zinc-700 border-solid border"
+          />
         </div>
-      </div>
-    </Link>
+      </Link>
+      <p className="text-wrap whitespace-normal text-ellipsis overflow-hidden ... max-w-full text-center">
+        #1 Jujutsu Kaisen
+      </p>
+    </div>
   );
 }

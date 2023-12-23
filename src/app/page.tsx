@@ -33,7 +33,7 @@ export default function Home() {
           <h2 className="font-bold text-xl mb-2">
             Top shows <span className="text-orange-600 font-black">subbed</span>
           </h2>
-          <div className="whitespace-nowrap overflow-x-scroll">
+          <div className="whitespace-nowrap overflow-x-scroll p-2">
             {images.map((image, index) => (
               <ContentCard
                 image={image}
@@ -48,7 +48,7 @@ export default function Home() {
           <h2 className="font-bold text-xl mb-2">
             Top shows <span className="text-purple-600 font-black">dubbed</span>
           </h2>
-          <div className="whitespace-nowrap overflow-x-scroll">
+          <div className="whitespace-nowrap overflow-x-scroll p-2">
             {images.map((image, index) => (
               <ContentCard
                 image={image}
