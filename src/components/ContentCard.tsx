@@ -30,8 +30,9 @@ export default function ContentCard({
         />
         <div className="absolute inset-1">
           <h2
-            className="absolute z-10 text-zinc-800/90 text-5xl font-black"
+            className="relative text-zinc-800/90 text-5xl font-black"
             style={{
+              zIndex: 1,
               textShadow: "0px 0px 5px rgba(255, 255, 255, 0.8)",
             }}
           >
