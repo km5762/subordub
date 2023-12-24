@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useCallback, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { Search, ArrowRight } from "react-feather";
 import Link from "next/link";
 import { z } from "zod";
@@ -23,32 +23,6 @@ export default function SearchBar({ className }: { className: string }) {
   const debouncedHandleChange = useMemo(() => {
     return debounce(handleChange, 500);
   }, []);
-
-  // async function getSearch(query: string) {
-  //   const response = await fetch(
-  //     `https://subordub-consumet.vercel.app/anime/gogoanime/${query}?`
-  //   );
-
-  //   const json = await response.json();
-
-  //   const result = z.array(Suggestion).safeParse(json.results);
-
-  //   if (!result.success) {
-  //     console.error("Error occured during search");
-  //   } else {
-  //     const hasMatchingDub = (suggestion: Suggestion) => {
-  //       return (
-  //         suggestion.subOrDub === "sub" &&
-  //         result.data.some(
-  //           (result) =>
-  //             result.id.replace(/-dub$/, "") === suggestion.id &&
-  //             result.subOrDub === "dub"
-  //         )
-  //       );
-  //     };
-  //     reutnrresult.data.filter((result) => hasMatchingDub(result));
-  //   }
-  // }
 
   async function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { value } = e.target;
@@ -89,10 +63,8 @@ export default function SearchBar({ className }: { className: string }) {
         <input
           type="search"
           className={
-            "text-black p-2 pl-8 pr-10 bg-zinc-800 border-solid border-zinc-500 text-white shadow-lg border-zinc-700 border-solid " +
-            (suggestions.length > 0
-              ? "rounded-t-2xl border-x border-t"
-              : "rounded-2xl border")
+            "p-2 pl-8 pr-10 bg-zinc-800 border text-white shadow-lg border-zinc-700 border-solid focus:outline-none " +
+            (search && suggestions.length > 0 ? "rounded-t-2xl" : "rounded-2xl")
           }
           onChange={debouncedHandleChange}
         />

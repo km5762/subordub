@@ -7,6 +7,7 @@ const nextConfig = {
       "m.media-amazon.com",
       "cdn.vox-cdn.com",
       "upload.wikimedia.org",
+      "gogocdn.net",
     ],
   },
 };
