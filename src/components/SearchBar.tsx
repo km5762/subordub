@@ -15,7 +15,7 @@ const Suggestion = z.object({
   url: z.string(),
 });
 
-type Suggestion = z.infer<typeof Suggestion>;
+export type Suggestion = z.infer<typeof Suggestion>;
 
 export default function SearchBar({ className }: { className: string }) {
   const [search, setSearch] = useState("");
@@ -79,7 +79,12 @@ export default function SearchBar({ className }: { className: string }) {
                   className="hover:bg-zinc-700 pl-8 p-2 text-ellipsis overflow-hidden ..."
                   key={suggestion.id}
                 >
-                  <Link href={`/shows/${suggestion.id}`}>
+                  <Link
+                    href={{
+                      pathname: `/shows/${suggestion.id}`,
+                      query: suggestion,
+                    }}
+                  >
                     {suggestion.title}
                   </Link>
                 </li>
