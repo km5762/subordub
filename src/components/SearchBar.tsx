@@ -72,7 +72,7 @@ export default function SearchBar({ className }: { className: string }) {
           <ArrowRight className="text-white" />
         </button>
         {search && suggestions.length > 0 && (
-          <div className="absolute z-50 bg-white w-full rounded-b-2xl overflow-hidden shadow-lg border-x border-b border-solid border-zinc-700">
+          <div className="absolute z-50 w-full rounded-b-2xl overflow-hidden shadow-lg border border-solid border-zinc-700">
             <ul className="bg-zinc-800">
               {suggestions.slice(0, 5).map((suggestion) => (
                 <li className="hover:bg-zinc-700 pl-8 p-2" key={suggestion.id}>
