@@ -75,7 +75,10 @@ export default function SearchBar({ className }: { className: string }) {
           <div className="absolute z-50 w-full rounded-b-2xl overflow-hidden shadow-lg border border-solid border-zinc-700">
             <ul className="bg-zinc-800">
               {suggestions.slice(0, 5).map((suggestion) => (
-                <li className="hover:bg-zinc-700 pl-8 p-2" key={suggestion.id}>
+                <li
+                  className="hover:bg-zinc-700 pl-8 p-2 text-ellipsis overflow-hidden ..."
+                  key={suggestion.id}
+                >
                   <Link href={`/shows/${suggestion.id}`}>
                     {suggestion.title}
                   </Link>
