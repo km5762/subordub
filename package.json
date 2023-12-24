@@ -13,6 +13,7 @@
     "pages:dev": "npx wrangler pages dev .vercel/output/static --compatibility-date=2023-12-06 --compatibility-flag=nodejs_compat"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.8.2",
+    "@types/lodash": "^4.14.202",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
