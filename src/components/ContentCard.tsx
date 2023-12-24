@@ -36,7 +36,7 @@ export default function ContentCard({
               textShadow: "0px 0px 5px rgba(255, 255, 255, 0.8)",
             }}
           >
-            #1
+            #{index + 1}
           </h2>
           <Image
             src={image}
