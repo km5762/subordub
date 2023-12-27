@@ -33,13 +33,13 @@ export default function Home() {
           <h2 className="font-bold text-xl mb-2">
             Top shows <span className="text-orange-600 font-black">subbed</span>
           </h2>
-          <div className="whitespace-nowrap overflow-x-scroll p-2">
+          <div className="whitespace-nowrap overflow-x-scroll p-2 py-4">
             {images.map((image, index) => (
               <ContentCard
                 image={image}
                 key={index}
                 index={index}
-                className="hover:shadow-orange-600"
+                className="hover:shadow-orange-600 hover:shadow-lg hover:scale-105 ease-in-out duration-200"
               />
             ))}
           </div>
@@ -48,13 +48,13 @@ export default function Home() {
           <h2 className="font-bold text-xl mb-2">
             Top shows <span className="text-purple-600 font-black">dubbed</span>
           </h2>
-          <div className="whitespace-nowrap overflow-x-scroll p-2">
+          <div className="whitespace-nowrap overflow-x-scroll p-2 py-4">
             {images.map((image, index) => (
               <ContentCard
                 image={image}
                 key={index}
                 index={index}
-                className="hover:shadow-purple-600"
+                className="hover:shadow-purple-600 hover:shadow-lg hover:scale-105 ease-in-out duration-200"
               />
             ))}
           </div>

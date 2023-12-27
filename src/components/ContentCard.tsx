@@ -14,36 +14,34 @@ export default function ContentCard({
   className,
 }: ContentCardProps) {
   return (
-    <div className="inline-block mr-4 last:mr-0 w-40">
-      <Link
-        href={"/shows/1"}
-        className={
-          "inline-block bg-zinc-800/60 w-full relative h-60 rounded-lg border-solid border-zinc-700 border p-1 cursor-pointer hover:shadow-lg transition duration-300 ease-in-out " +
-          className
-        }
-      >
-        <Image
-          src={image}
-          alt={"Content card"}
-          fill
-          className="object-cover rounded-lg -z-10 bg-white blur-sm"
-        />
-        <div className="absolute inset-1">
-          <h2
-            className="relative text-zinc-800/90 text-5xl font-black"
-            style={{
-              zIndex: 1,
-              textShadow: "0px 0px 5px rgba(255, 255, 255, 0.8)",
-            }}
-          >
-            #{index + 1}
-          </h2>
-          <Image
-            src={image}
-            alt={"Content card"}
-            fill
-            className="object-cover rounded-lg border-zinc-700 border-solid border"
-          />
+    <div className="inline-block mr-4 last:mr-0">
+      <Link href={"/"}>
+        <div className="relative px-6">
+          <div className="absolute w-full h-5/6 box-border top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-zinc-700 border-solid border overflow-hidden">
+            <Image
+              src={image}
+              alt="sd"
+              fill
+              className="object-cover brightness-50"
+            />
+            <div className="relative bg-zinc-800/90"></div>
+          </div>
+          <div className="relative w-40 h-52">
+            <Image
+              src={image}
+              alt="sd"
+              fill
+              className="object-cover blur"
+              quality={100}
+            />
+            <Image
+              src={image}
+              alt="sd"
+              fill
+              className={"object-cover " + className}
+              quality={100}
+            />
+          </div>
         </div>
       </Link>
       <p className="text-wrap whitespace-normal text-ellipsis overflow-hidden ... max-w-full text-center">
