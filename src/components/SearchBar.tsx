@@ -29,7 +29,7 @@ export default function SearchBar({ className }: { className: string }) {
       const result = z.array(Suggestion).safeParse(json);
 
       if (!result.success) {
-        console.error("Error occured during search");
+        console.error(result.error);
       } else {
         setSuggestions(result.data);
       }
