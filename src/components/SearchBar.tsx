@@ -1,21 +1,12 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Search, ArrowRight } from "react-feather";
 import Link from "next/link";
 import { z } from "zod";
 import debounce from "lodash/debounce";
-
-const Suggestion = z.object({
-  id: z.string(),
-  image: z.string(),
-  releaseDate: z.string(),
-  subOrDub: z.string(),
-  title: z.string(),
-  url: z.string(),
-});
-
-export type Suggestion = z.infer<typeof Suggestion>;
+import qs from "qs";
+import { Suggestion } from "@/types/types";
 
 export default function SearchBar({ className }: { className: string }) {
   const [search, setSearch] = useState("");
@@ -30,31 +21,24 @@ export default function SearchBar({ className }: { className: string }) {
 
     if (value) {
       const response = await fetch(
-        `https://subordub-consumet.vercel.app/anime/gogoanime/${value}?`
+        `https://api.tvmaze.com/search/shows?q=${value}`
       );
 
       const json = await response.json();
 
-      const result = z.array(Suggestion).safeParse(json.results);
+      const result = z.array(Suggestion).safeParse(json);
 
       if (!result.success) {
         console.error("Error occured during search");
       } else {
-        const hasMatchingDub = (suggestion: Suggestion) => {
-          return (
-            suggestion.subOrDub === "sub" &&
-            result.data.some(
-              (result) =>
-                result.id.replace(/-dub$/, "") === suggestion.id &&
-                result.subOrDub === "dub"
-            )
-          );
-        };
-
-        setSuggestions(result.data.filter((result) => hasMatchingDub(result)));
+        setSuggestions(result.data);
       }
     }
   }
+
+  useEffect(() => {
+    console.log(suggestions);
+  }, [suggestions]);
 
   return (
     <>
@@ -77,15 +61,15 @@ export default function SearchBar({ className }: { className: string }) {
               {suggestions.slice(0, 5).map((suggestion) => (
                 <li
                   className="hover:bg-zinc-700 pl-8 p-2 text-ellipsis overflow-hidden ..."
-                  key={suggestion.id}
+                  key={suggestion.show.id}
                 >
                   <Link
                     href={{
-                      pathname: `/shows/${suggestion.id}`,
-                      query: suggestion,
+                      pathname: `/shows/${suggestion.show.id}`,
+                      query: qs.stringify(suggestion.show),
                     }}
                   >
-                    {suggestion.title}
+                    {suggestion.show.name}
                   </Link>
                 </li>
               ))}
