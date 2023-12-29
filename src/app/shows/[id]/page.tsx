@@ -1,40 +1,62 @@
 import React, { useEffect } from "react";
-import { Suggestion } from "@/components/SearchBar";
 import Image from "next/image";
+import { getShow } from "@/data/shows";
+import qs from "qs";
+import { Show } from "@/types/types";
+import { notFound } from "next/navigation";
 
-export default function Page({ searchParams }: { searchParams: Suggestion }) {
+export default async function Page({
+  params,
+  searchParams,
+}: {
+  params: { id: number };
+  searchParams: string;
+}) {
+  const response = params.id
+    ? await getShow(params.id)
+    : qs.parse(searchParams);
+
+  if (response.status === 404) {
+    notFound();
+  }
+
+  const result = Show.safeParse(response);
+
+  let show;
+  if (result.success) {
+    show = result.data;
+  } else {
+    throw Error;
+  }
+
   return (
     <main className="px-2 pb-16">
-      <h2 className="font-black text-4  xl mt-12 mb-12">
-        {searchParams.title}
-      </h2>
-      <div className="relative">
-        <div className="relative h-80 overflow-hidden rounded-xl border-zinc-700 border-solid border">
+      <Image
+        src={show.image.original}
+        alt={`${show.name} poster`}
+        fill
+        className="object-cover blur -z-50 opacity-30"
+      />
+      <h2 className="font-black text-4xl mt-12 mb-12">{show.name}</h2>
+      <section className="mt-12 bg-zinc-800/60 rounded-xl w-full border-solid border-zinc-700 border">
+        <div className="relative">
           <Image
-            src={searchParams.image}
-            alt={`${searchParams.title} poster`}
-            fill
-            className="object-cover blur -z-20"
+            src={show.image.original}
+            alt={`${show.name} poster`}
+            width={200}
+            height={200}
+            className="absolute inset-0 m-auto"
           />
-          <div className="w-full h-full bg-zinc-800/60 shadow-inner absolute -z-20"></div>
+          <Image
+            src={show.image.original}
+            alt={`${show.name} poster`}
+            width={200}
+            height={200}
+            className="absolute inset-0 m-auto blur-md -z-10"
+          />
         </div>
-        <Image
-          src={searchParams.image}
-          alt={`${searchParams.title} poster`}
-          width={300}
-          height={200}
-          className="absolute inset-0 m-auto"
-        />
-        <Image
-          src={searchParams.image}
-          alt={`${searchParams.title} poster`}
-          width={300}
-          height={200}
-          className="absolute inset-0 m-auto blur-md -z-10"
-        />
-      </div>
-      <section className="mt-12 rounded-xl w-full border-solid border-zinc-700 border">
         <h2 className="font-black text-3xl mt-12">Synposis</h2>
+        <p></p>
       </section>
     </main>
   );

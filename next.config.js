@@ -8,6 +8,7 @@ const nextConfig = {
       "cdn.vox-cdn.com",
       "upload.wikimedia.org",
       "gogocdn.net",
+      "static.tvmaze.com",
     ],
   },
 };
