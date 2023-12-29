@@ -6,6 +6,7 @@ export const Show = z.object({
     medium: z.string(),
     original: z.string(),
   }),
+  summary: z.string(),
   name: z.string(),
   url: z.string(),
 });

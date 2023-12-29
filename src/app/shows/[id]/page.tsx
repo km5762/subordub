@@ -4,6 +4,7 @@ import { getShow } from "@/data/shows";
 import qs from "qs";
 import { Show } from "@/types/types";
 import { notFound } from "next/navigation";
+import { sanitize } from "isomorphic-dompurify";
 
 export default async function Page({
   params,
@@ -56,7 +57,7 @@ export default async function Page({
           />
         </div>
         <h2 className="font-black text-3xl mt-12">Synposis</h2>
-        <p></p>
+        <div dangerouslySetInnerHTML={{ __html: sanitize(show.summary) }} />
       </section>
     </main>
   );

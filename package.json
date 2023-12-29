@@ -13,6 +13,7 @@
     "pages:dev": "npx wrangler pages dev .vercel/output/static --compatibility-date=2023-12-06 --compatibility-flag=nodejs_compat"
   },
   "dependencies": {
+    "isomorphic-dompurify": "^2.0.0",
     "lodash": "^4.17.21",
     "next": "14.0.4",
     "qs": "^6.11.2",
