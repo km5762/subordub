@@ -36,7 +36,7 @@ export default async function Page({
     <main className="px-2 pb-16">
       {show.image && (
         <Image
-          src={show.image.original}
+          src={show.image.medium}
           alt={`${show.name} poster`}
           fill
           className="object-cover blur -z-50 opacity-30"
@@ -50,52 +50,49 @@ export default async function Page({
           {show.schedule.time} | {show.averageRuntime}m
         </p>
       </div>
-      <section className="bg-zinc-800/75 rounded-xl w-full border-solid border-zinc-700 border p-4 overflow-hidden space-y-4 flex flex-wrap">
-        <div className="bg-zinc-800/75 border-zinc-700 border-solid border rounded-xl p-4 sm:float-right sm:mb-0 w-full flex">
-          <div
-            className="relative w-64 mr-4 flex-none"
-            style={{ minHeight: "320px", maxHeight: "400px" }}
-          >
-            {show.image && (
-              <>
-                <Image
-                  src={show.image.original}
-                  alt={`${show.name} poster`}
-                  fill
+      <section className="bg-zinc-800/75 rounded-xl w-full border-solid border-zinc-700 border p-4">
+        <div className="bg-zinc-800/75 border-zinc-700 border-solid border rounded-xl p-4 w-full md:flex justify-center space-x-4 space-y-4">
+          {show.image && (
+            <div
+              className="relative md:w-72 shrink-0"
+              style={{ minHeight: "25em" }}
+            >
+              <Image
+                src={show.image.original}
+                alt={`${show.name} poster`}
+                className="object-cover absolute z-10"
+                fill
+              />
+              <Image
+                src={show.image.medium}
+                alt={`${show.name} poster`}
+                fill
+                className="absolute object-cover blur"
+              />
+            </div>
+          )}
+          <div className="md:flex flex-col justify-between">
+            <div>
+              <h2 className="font-black text-3xl mb-3">Synposis</h2>
+              {show.summary && (
+                <div
+                  className="leading-relaxed text-lg"
+                  dangerouslySetInnerHTML={{ __html: sanitize(show.summary) }}
                 />
-                <Image
-                  src={show.image.original}
-                  alt={`${show.name} poster`}
-                  fill
-                  className="relative blur-md -z-10"
-                />
-              </>
-            )}
-          </div>
-          <div className="h-full">
-            <div className="flex flex-col justify-between h-full">
-              <div>
-                <h2 className="font-black text-3xl mb-3">Synposis</h2>
-                {show.summary && (
-                  <div
-                    className="leading-relaxed text-lg"
-                    dangerouslySetInnerHTML={{ __html: sanitize(show.summary) }}
-                  />
-                )}
-              </div>
-              <div className="flex flex-wrap">
+              )}
+            </div>
+            <div className="flex flex-wrap">
+              <button className="border-zinc-700 border-solid border rounded-full px-2 py-1 m-1 hover:bg-zinc-700">
+                {show.language}
+              </button>
+              <button className="border-zinc-700 border-solid border rounded-full px-2 py-1 m-1 hover:bg-zinc-700">
+                {show.type}
+              </button>
+              {show.genres.map((genre) => (
                 <button className="border-zinc-700 border-solid border rounded-full px-2 py-1 m-1 hover:bg-zinc-700">
-                  {show.language}
+                  {genre}
                 </button>
-                <button className="border-zinc-700 border-solid border rounded-full px-2 py-1 m-1 hover:bg-zinc-700">
-                  {show.type}
-                </button>
-                {show.genres.map((genre) => (
-                  <button className="border-zinc-700 border-solid border rounded-full px-2 py-1 m-1 hover:bg-zinc-700">
-                    {genre}
-                  </button>
-                ))}
-              </div>
+              ))}
             </div>
           </div>
         </div>
