@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import { sanitize } from "isomorphic-dompurify";
 import { Info } from "react-feather";
 import { renderToString } from "react-dom/server";
+import Container from "@/components/Container";
 
 export default async function Page({
   params,
@@ -33,7 +34,7 @@ export default async function Page({
   }
 
   return (
-    <main className="px-2 pb-16">
+    <main className="px-4 py-2">
       {show.image && (
         <Image
           src={show.image.medium}
@@ -50,8 +51,8 @@ export default async function Page({
           {show.schedule.time} | {show.averageRuntime}m
         </p>
       </div>
-      <section className="bg-zinc-800/75 rounded-xl w-full border-solid border-zinc-700 border p-4">
-        <div className="bg-zinc-800/75 border-zinc-700 border-solid border rounded-xl p-4 w-full md:flex justify-center space-x-4 space-y-4">
+      <Container className="w-full space-y-4">
+        <Container className="w-full md:flex justify-center space-x-4">
           {show.image && (
             <div
               className="relative md:w-72 shrink-0"
@@ -95,8 +96,11 @@ export default async function Page({
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </Container>
+        <Container>
+          <h2 className="font-black text-3xl mb-3">Reviews</h2>
+        </Container>
+      </Container>
     </main>
   );
 }
