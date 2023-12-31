@@ -8,6 +8,7 @@ import { sanitize } from "isomorphic-dompurify";
 import { Info } from "react-feather";
 import { renderToString } from "react-dom/server";
 import Container from "@/components/Container";
+import Tag from "@/components/Tag";
 
 export default async function Page({
   params,
@@ -83,16 +84,10 @@ export default async function Page({
               )}
             </div>
             <div className="flex flex-wrap">
-              <button className="border-zinc-700 border-solid border rounded-full px-2 py-1 m-1 hover:bg-zinc-700">
-                {show.language}
-              </button>
-              <button className="border-zinc-700 border-solid border rounded-full px-2 py-1 m-1 hover:bg-zinc-700">
-                {show.type}
-              </button>
+              <Tag>{show.language}</Tag>
+              <Tag>{show.type}</Tag>
               {show.genres.map((genre) => (
-                <button className="border-zinc-700 border-solid border rounded-full px-2 py-1 m-1 hover:bg-zinc-700">
-                  {genre}
-                </button>
+                <Tag>{genre}</Tag>
               ))}
             </div>
           </div>
