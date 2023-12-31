@@ -42,10 +42,20 @@ export default async function Page({
           className="object-cover blur -z-50 opacity-30"
         />
       )}
-      <h2 className="font-black text-4xl my-3">{show.name}</h2>
-      <section className="bg-zinc-800/75 rounded-xl w-full border-solid border-zinc-700 border p-4 overflow-hidden space-y-4">
-        <div className="bg-zinc-800/75 border-zinc-700 border-solid border rounded-xl p-4 sm:float-right sm:mb-0 flex">
-          <div className="relative w-40 h-52 mr-4">
+      <div className="my-3">
+        <h2 className="font-black text-4xl">{show.name}</h2>
+        <p>
+          ({show.premiered?.slice(0, 4)} -{" "}
+          {show.ended?.slice(0, 4) ?? "Present"}) | {show.schedule.days}s @{" "}
+          {show.schedule.time} | {show.averageRuntime}m
+        </p>
+      </div>
+      <section className="bg-zinc-800/75 rounded-xl w-full border-solid border-zinc-700 border p-4 overflow-hidden space-y-4 flex flex-wrap">
+        <div className="bg-zinc-800/75 border-zinc-700 border-solid border rounded-xl p-4 sm:float-right sm:mb-0 w-full flex">
+          <div
+            className="relative w-64 mr-4 flex-none"
+            style={{ minHeight: "320px", maxHeight: "400px" }}
+          >
             {show.image && (
               <>
                 <Image
@@ -62,37 +72,32 @@ export default async function Page({
               </>
             )}
           </div>
-          <div className="space-y-2">
-            <button className="border-zinc-700 border-solid border rounded-full px-2 py-1 hover:bg-zinc-700 block">
-              {show.type}
-            </button>
-            <button className="border-zinc-700 border-solid border rounded-full px-2 py-1 hover:bg-zinc-700 block">
-              {show.language}
-            </button>
-            <p>
-              ({show.premiered?.slice(0, 4)} -{" "}
-              {show.ended?.slice(0, 4) ?? "Present"})
-            </p>
-            <p>
-              {show.schedule.days}s | {show.schedule.time} |{" "}
-              {show.averageRuntime}m
-            </p>
-            <p>{show.network?.name}</p>
+          <div className="h-full">
+            <div className="flex flex-col justify-between h-full">
+              <div>
+                <h2 className="font-black text-3xl mb-3">Synposis</h2>
+                {show.summary && (
+                  <div
+                    className="leading-relaxed text-lg"
+                    dangerouslySetInnerHTML={{ __html: sanitize(show.summary) }}
+                  />
+                )}
+              </div>
+              <div className="flex flex-wrap">
+                <button className="border-zinc-700 border-solid border rounded-full px-2 py-1 m-1 hover:bg-zinc-700">
+                  {show.language}
+                </button>
+                <button className="border-zinc-700 border-solid border rounded-full px-2 py-1 m-1 hover:bg-zinc-700">
+                  {show.type}
+                </button>
+                {show.genres.map((genre) => (
+                  <button className="border-zinc-700 border-solid border rounded-full px-2 py-1 m-1 hover:bg-zinc-700">
+                    {genre}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-        <h2 className="font-black text-3xl mb-3">Synposis</h2>
-        {show.summary && (
-          <div
-            className="leading-relaxed text-lg"
-            dangerouslySetInnerHTML={{ __html: sanitize(show.summary) }}
-          />
-        )}
-        <div className="flex flex-wrap">
-          {show.genres.map((genre) => (
-            <button className="border-zinc-700 border-solid border rounded-full px-2 py-1 m-1 hover:bg-zinc-700">
-              {genre}
-            </button>
-          ))}
         </div>
       </section>
     </main>
