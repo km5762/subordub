@@ -8,6 +8,7 @@ import { sanitize } from "isomorphic-dompurify";
 import Container from "@/components/Container";
 import Tag from "@/components/Tag";
 import { Star } from "react-feather";
+import HorizontalBarChart from "@/components/HorizontalBarChart";
 
 export default async function Page({
   params,
@@ -92,15 +93,51 @@ export default async function Page({
           </div>
         </Container>
         <h2 className="font-black text-3xl mb-3">Breakdown</h2>
-        <Container className="flex justify-evenly">
-          <div className="border-solid border-r flex-1 border-zinc-700 text-center">
-            <p className="font-black text-4xl text-orange-600">8.9</p>
-            <p>Sub Score</p>
+        <Container className="space-y-4">
+          <div className="flex justify-evenly">
+            <div className="border-solid border-r flex-1 border-zinc-700 text-center">
+              <p className="font-black text-4xl text-orange-600">8.9</p>
+              <p>Sub Score</p>
+            </div>
+            <div className="border-solid border-l flex-1 border-zinc-700 text-center">
+              <p className="font-black text-4xl text-purple-600">7.3</p>
+              <p>Dub Score</p>
+            </div>
           </div>
-          <div className="border-solid border-l flex-1 border-zinc-700 text-center">
-            <p className="font-black text-4xl text-purple-600">7.3</p>
-            <p>Dub Score</p>
-          </div>
+          <h3 className="font-bold text-xl">Popularity</h3>
+          <HorizontalBarChart
+            values={{ sub: 70, dub: 36 }}
+            labels={{
+              sub: (
+                <span>
+                  56 <span className="font-light">reviews</span>
+                </span>
+              ),
+              dub: (
+                <span>
+                  36 <span className="font-light">reviews</span>
+                </span>
+              ),
+            }}
+          />
+          <h3 className="font-bold text-xl">Average Rating</h3>
+          <HorizontalBarChart
+            values={{ sub: 8.9, dub: 5 }}
+            labels={{
+              sub: (
+                <>
+                  <span className="align-middle">8.9</span>
+                  <Star className="inline-block scale-[65%] fill-white" />
+                </>
+              ),
+              dub: (
+                <>
+                  <span className="align-middle">5</span>
+                  <Star className="inline-block scale-[65%] fill-white" />
+                </>
+              ),
+            }}
+          />
         </Container>
         <h2 className="font-black text-3xl mb-3">Reviews</h2>
         <Container></Container>
