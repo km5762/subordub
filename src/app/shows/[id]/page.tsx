@@ -5,10 +5,9 @@ import qs from "qs";
 import { Show } from "@/types/types";
 import { notFound } from "next/navigation";
 import { sanitize } from "isomorphic-dompurify";
-import { Info } from "react-feather";
-import { renderToString } from "react-dom/server";
 import Container from "@/components/Container";
 import Tag from "@/components/Tag";
+import { Star } from "react-feather";
 
 export default async function Page({
   params,
@@ -35,7 +34,7 @@ export default async function Page({
   }
 
   return (
-    <main className="px-4 py-2">
+    <main className="sm:px-4 py-4">
       {show.image && (
         <Image
           src={show.image.medium}
@@ -53,7 +52,7 @@ export default async function Page({
         </p>
       </div>
       <Container className="w-full space-y-4">
-        <Container className="w-full md:flex justify-center space-x-4">
+        <Container className="w-full md:flex justify-center space-x-4 space-y-4">
           {show.image && (
             <div
               className="relative md:w-72 shrink-0"
@@ -73,7 +72,7 @@ export default async function Page({
               />
             </div>
           )}
-          <div className="md:flex flex-col justify-between">
+          <div className="md:flex flex-col justify-between space-y-4">
             <div>
               <h2 className="font-black text-3xl mb-3">Synposis</h2>
               {show.summary && (
@@ -92,9 +91,19 @@ export default async function Page({
             </div>
           </div>
         </Container>
-        <Container>
-          <h2 className="font-black text-3xl mb-3">Reviews</h2>
+        <h2 className="font-black text-3xl mb-3">Breakdown</h2>
+        <Container className="flex justify-evenly">
+          <div className="border-solid border-r flex-1 border-zinc-700 text-center">
+            <p className="font-black text-4xl text-orange-600">8.9</p>
+            <p>Sub Score</p>
+          </div>
+          <div className="border-solid border-l flex-1 border-zinc-700 text-center">
+            <p className="font-black text-4xl text-purple-600">7.3</p>
+            <p>Dub Score</p>
+          </div>
         </Container>
+        <h2 className="font-black text-3xl mb-3">Reviews</h2>
+        <Container></Container>
       </Container>
     </main>
   );
