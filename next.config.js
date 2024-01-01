@@ -9,6 +9,7 @@ const nextConfig = {
       "upload.wikimedia.org",
       "gogocdn.net",
       "static.tvmaze.com",
+      "static.thenounproject.com",
     ],
   },
 };

@@ -9,6 +9,7 @@ import Container from "@/components/Container";
 import Tag from "@/components/Tag";
 import { Star } from "react-feather";
 import HorizontalBarChart from "@/components/HorizontalBarChart";
+import ReviewCard from "@/components/ReviewCard";
 
 export default async function Page({
   params,
@@ -140,7 +141,12 @@ export default async function Page({
           />
         </Container>
         <h2 className="font-black text-3xl mb-3">Reviews</h2>
-        <Container></Container>
+        <Container className="hidden sm:block">
+          <ReviewCard rating={8} />
+        </Container>
+        <div className="sm:hidden">
+          <ReviewCard rating={8} />
+        </div>
       </Container>
     </main>
   );
