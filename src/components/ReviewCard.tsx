@@ -15,11 +15,7 @@ export default function ReviewCard({ rating }: { rating: number }) {
         />
         <div>
           <p>Dawgrat</p>
-          <StarRating
-            value={rating}
-            empty={<Star />}
-            full={<Star className="fill-white" />}
-          />
+          <StarRating rating={rating} fullClassName="fill-white" readOnly />
           <p className="font-black text-orange-600">SUB</p>
         </div>
         <div className="mx-3 mt-2">
