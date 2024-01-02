@@ -2,6 +2,7 @@ import React from "react";
 import Container from "./Container";
 import Image from "next/image";
 import { Star, ThumbsUp, ThumbsDown } from "react-feather";
+import StarRating from "./StarRating";
 export default function ReviewCard({ rating }: { rating: number }) {
   return (
     <Container>
@@ -14,9 +15,11 @@ export default function ReviewCard({ rating }: { rating: number }) {
         />
         <div>
           <p>Dawgrat</p>
-          {[...Array(rating)].map((_) => (
-            <Star className="inline-block" />
-          ))}
+          <StarRating
+            value={rating}
+            empty={<Star />}
+            full={<Star className="fill-white" />}
+          />
           <p className="font-black text-orange-600">SUB</p>
         </div>
         <div className="mx-3 mt-2">
