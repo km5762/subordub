@@ -13,7 +13,8 @@
     outline-offset: -2px; /* Fix outline style in Safari */
   }
 
-  input,
+  input[type="text"],
+  input[type="search"],
   textarea {
     @apply bg-zinc-100;
     @apply text-zinc-950;
