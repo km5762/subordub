@@ -18,6 +18,7 @@
   textarea {
     @apply bg-zinc-100;
     @apply text-zinc-950;
+    @apply border-zinc-700 border-solid border;
   }
 
   button svg {
