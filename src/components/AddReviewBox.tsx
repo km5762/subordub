@@ -61,12 +61,12 @@ export default function AddReviewBox() {
             type="text"
             name=""
             id=""
-            className="block rounded w-full text-black px-2 py-1"
+            className="block rounded w-full px-2 py-1"
           />
         </label>
         <label className="block">
           Review
-          <textarea className="block rounded w-full text-black px-2 py-1" />
+          <textarea className="block rounded w-full px-2 py-1" />
         </label>
         <div className="flex justify-end">
           <input
