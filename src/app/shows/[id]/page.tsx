@@ -22,10 +22,7 @@ export default async function Page({
   params: { id: number };
   searchParams: string;
 }) {
-  console.log(process.env.NEXTAUTH_SECRET);
   const session = await getServerSession(authOptions);
-
-  console.log(session);
 
   const response = params.id
     ? await getShow(params.id)

@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import Container from "./Container";
 import GoogleSignInButton from "./GoogleSignInButton";
+import FacebookSignInButton from "./FacebookSignInButton";
 
 export default function SignInModal({
   open,
@@ -32,7 +33,10 @@ export default function SignInModal({
     >
       <Container>
         <h2>Sign in to continue</h2>
-        <GoogleSignInButton />
+        <div className="flex flex-col gap-4">
+          <GoogleSignInButton />
+          <FacebookSignInButton />
+        </div>
       </Container>
     </div>
   );
