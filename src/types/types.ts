@@ -33,6 +33,17 @@ export const Suggestion = z.object({
   show: Show,
 });
 
+export const User = z
+  .object({
+    id: z.number(),
+    username: z.string().min(4),
+    hashed_password: z.string(),
+  })
+  .transform((data) => ({
+    ...data,
+    hashedPassword: data.hashed_password,
+  }));
+
 export type Show = z.infer<typeof Show>;
 
 export type Suggestion = z.infer<typeof Suggestion>;

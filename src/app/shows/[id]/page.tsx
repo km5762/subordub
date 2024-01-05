@@ -11,6 +11,9 @@ import { Star } from "react-feather";
 import HorizontalBarChart from "@/components/HorizontalBarChart";
 import ReviewCard from "@/components/ReviewCard";
 import AddReviewBox from "@/components/AddReviewBox";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/nextauth";
+import { useSession } from "next-auth/react";
 
 export default async function Page({
   params,
@@ -19,6 +22,11 @@ export default async function Page({
   params: { id: number };
   searchParams: string;
 }) {
+  console.log(process.env.NEXTAUTH_SECRET);
+  const session = await getServerSession(authOptions);
+
+  console.log(session);
+
   const response = params.id
     ? await getShow(params.id)
     : qs.parse(searchParams);
@@ -144,11 +152,11 @@ export default async function Page({
           </Container>
           <h2 className="font-black text-3xl mb-3">Reviews</h2>
           <Container className="hidden sm:block space-y-4">
-            <AddReviewBox />
+            <AddReviewBox session={session} />
             <ReviewCard rating={8} />
           </Container>
           <div className="sm:hidden space-y-4">
-            <AddReviewBox />
+            <AddReviewBox session={session} />
             <ReviewCard rating={8} />
           </div>
         </Container>

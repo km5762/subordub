@@ -1,22 +1,28 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "@/components/Container";
 import StarRating from "./StarRating";
 import { Star } from "react-feather";
+import { useSession } from "next-auth/react";
+import { Session } from "next-auth";
 
 enum SubOrDub {
   Sub,
   Dub,
 }
 
-export default function AddReviewBox() {
+export default function AddReviewBox({ session }: { session: Session | null }) {
   const [rating, setRating] = useState(0);
   const [subOrDub, setSubOrDub] = useState<SubOrDub | undefined>();
 
   function handleClick(event: React.MouseEvent) {
     event.preventDefault();
   }
+
+  useEffect(() => {
+    console.log(session);
+  }, [session]);
 
   return (
     <Container>
@@ -32,6 +38,7 @@ export default function AddReviewBox() {
               rating={rating}
               setRating={setRating}
             />
+            <input type="hidden" name="rating" value={rating} />
             <div className="flex space-between gap-4 inline-block">
               <input
                 type="button"
@@ -56,17 +63,16 @@ export default function AddReviewBox() {
           </div>
         </div>
         <label className="block">
-          Heading
+          Title
           <input
             type="text"
-            name=""
-            id=""
+            name="title"
             className="block rounded w-full px-2 py-1"
           />
         </label>
         <label className="block">
           Review
-          <textarea className="block rounded w-full px-2 py-1" />
+          <textarea className="block rounded w-full px-2 py-1" name="text" />
         </label>
         <div className="flex justify-end">
           <input

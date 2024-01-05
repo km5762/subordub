@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverComponentsExternalPackages: ["argon2"],
+  },
   images: {
     domains: [
       "www.google.com",
