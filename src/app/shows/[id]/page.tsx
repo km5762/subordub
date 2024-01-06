@@ -14,6 +14,7 @@ import AddReviewBox from "@/components/AddReviewBox";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/nextauth";
 import { useSession } from "next-auth/react";
+import { z } from "zod";
 
 export default async function Page({
   params,
@@ -24,6 +25,7 @@ export default async function Page({
 }) {
   const session = await getServerSession(authOptions);
 
+  console.log(session);
   const response = params.id
     ? await getShow(params.id)
     : qs.parse(searchParams);

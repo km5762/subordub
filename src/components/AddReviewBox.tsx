@@ -20,10 +20,6 @@ export default function AddReviewBox({ session }: { session: Session | null }) {
     event.preventDefault();
   }
 
-  useEffect(() => {
-    console.log(session);
-  }, [session]);
-
   return (
     <Container>
       <form action="GET" className="space-y-2 w-full">
@@ -68,11 +64,16 @@ export default function AddReviewBox({ session }: { session: Session | null }) {
             type="text"
             name="title"
             className="block rounded w-full px-2 py-1"
+            disabled={!session}
           />
         </label>
         <label className="block">
           Review
-          <textarea className="block rounded w-full px-2 py-1" name="text" />
+          <textarea
+            className="block rounded w-full px-2 py-1"
+            name="text"
+            disabled={!session}
+          />
         </label>
         <div className="flex justify-end">
           <input
