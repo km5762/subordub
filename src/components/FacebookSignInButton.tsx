@@ -1,7 +1,8 @@
-import { signIn } from "next-auth/react";
+"use client";
+
+import { useRouter } from "next/navigation";
 
 export default function FacebookSignInButton() {
-  return (
-    <button onClick={() => signIn("facebook")}>Sign in with Facebook</button>
-  );
+  const router = useRouter();
+  return <button>Sign in with Facebook</button>;
 }

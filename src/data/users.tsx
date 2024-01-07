@@ -3,25 +3,21 @@ import { cache } from "react";
 import { connection } from "@/lib/planetscale";
 import { z } from "zod";
 
-export const getUser = cache(async (email?: string | null) => {
+export const getUser = cache(async (googleId: number) => {
   const { rows } = await connection.execute(
-    "SELECT * FROM user WHERE email = ?",
-    [email]
+    "SELECT * FROM user WHERE google_id = ?",
+    [googleId]
   );
 
   return rows[0];
 });
 
 export const createUser = cache(
-  async (user: {
-    email: string;
-    username?: string | null;
-    image?: string | null;
-  }) => {
-    const { email, username, image } = user;
-    await connection.execute(
-      "INSERT INTO user (username, email, image) VALUES (?, ?, ?)",
-      [username, email, image]
-    );
+  async (user: { id: string; googleId: number }) => {
+    const { id, googleId } = user;
+    await connection.execute("INSERT INTO user (id, google_id) VALUES (?, ?)", [
+      id,
+      googleId,
+    ]);
   }
 );

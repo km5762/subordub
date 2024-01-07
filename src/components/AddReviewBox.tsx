@@ -4,27 +4,23 @@ import React, { useEffect, useState } from "react";
 import Container from "@/components/Container";
 import StarRating from "./StarRating";
 import { Star } from "react-feather";
-import { useSession } from "next-auth/react";
-import { Session } from "next-auth";
+import { createReview } from "@/actions/reviews";
+import { User } from "lucia";
 
 enum SubOrDub {
-  Sub,
-  Dub,
+  Sub = "sub",
+  Dub = "dub",
 }
 
-export default function AddReviewBox({ session }: { session: Session | null }) {
+export default function AddReviewBox({ user }: { user: User | null }) {
   const [rating, setRating] = useState(0);
   const [subOrDub, setSubOrDub] = useState<SubOrDub | undefined>();
 
-  function handleClick(event: React.MouseEvent) {
-    event.preventDefault();
-  }
-
   return (
     <Container>
-      <form action="GET" className="space-y-2 w-full">
+      <form action={createReview} className="space-y-2 w-full">
         <h3 className="mb-3">
-          Add a review as <b>Anonymous</b>
+          Add a review as <b>{user?.username ?? "Anonymous"}</b>
         </h3>
         <div>
           <label className="block -mb-1">Rating</label>
@@ -64,22 +60,17 @@ export default function AddReviewBox({ session }: { session: Session | null }) {
             type="text"
             name="title"
             className="block rounded w-full px-2 py-1"
-            disabled={!session}
           />
         </label>
         <label className="block">
           Review
-          <textarea
-            className="block rounded w-full px-2 py-1"
-            name="text"
-            disabled={!session}
-          />
+          <textarea className="block rounded w-full px-2 py-1" name="text" />
         </label>
         <div className="flex justify-end">
           <input
             type="submit"
             value="Add review"
-            className="font-bold mt-3 bg-pink-600 rounded-full px-4 py-2"
+            className="font-bold mt-3 bg-pink-600 rounded-full px-4 py-2 cursor-pointer"
           />
         </div>
       </form>

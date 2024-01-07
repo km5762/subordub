@@ -13,13 +13,16 @@
     "pages:dev": "npx wrangler pages dev .vercel/output/static --compatibility-date=2023-12-06 --compatibility-flag=nodejs_compat"
   },
   "dependencies": {
+    "@lucia-auth/adapter-mysql": "^3.0.0-beta.7",
     "@planetscale/database": "^1.13.0",
     "@types/argon2": "^0.15.0",
+    "arctic": "^0.10.2",
     "bcrypt": "^5.1.1",
-    "isomorphic-dompurify": "^2.0.0",
+    "dompurify": "^3.0.8",
     "lodash": "^4.17.21",
+    "lucia": "^3.0.0-beta.14",
     "next": "14.0.4",
-    "next-auth": "^4.24.5",
+    "oslo": "^0.27.0",
     "qs": "^6.11.2",
     "react": "^18",
     "react-dom": "^18",
@@ -29,6 +32,7 @@
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.8.2",
     "@types/bcrypt": "^5.0.2",
+    "@types/dompurify": "^3.0.5",
     "@types/lodash": "^4.14.202",
     "@types/node": "^20",
     "@types/qs": "^6.9.11",

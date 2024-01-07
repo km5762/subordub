@@ -4,17 +4,17 @@ import { getShow } from "@/data/shows";
 import qs from "qs";
 import { Show } from "@/types/types";
 import { notFound } from "next/navigation";
-import { sanitize } from "isomorphic-dompurify";
 import Container from "@/components/Container";
 import Tag from "@/components/Tag";
 import { Star } from "react-feather";
 import HorizontalBarChart from "@/components/HorizontalBarChart";
 import ReviewCard from "@/components/ReviewCard";
 import AddReviewBox from "@/components/AddReviewBox";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/nextauth";
-import { useSession } from "next-auth/react";
-import { z } from "zod";
+import { validateRequest } from "@/lib/lucia";
+import DOMPurify from "dompurify";
+import ShowSynopsis from "@/components/ShowSynopsis";
+
+export const runtime = "edge";
 
 export default async function Page({
   params,
@@ -23,9 +23,8 @@ export default async function Page({
   params: { id: number };
   searchParams: string;
 }) {
-  const session = await getServerSession(authOptions);
+  const { user, session } = await validateRequest();
 
-  console.log(session);
   const response = params.id
     ? await getShow(params.id)
     : qs.parse(searchParams);
@@ -45,6 +44,9 @@ export default async function Page({
 
   return (
     <main className="sm:px-4 py-4 flex flex-col items-center">
+      <p>
+        {user?.id}, {user?.googleId}
+      </p>
       <div>
         {show.image && (
           <Image
@@ -86,18 +88,13 @@ export default async function Page({
             <div className="md:flex flex-col justify-between space-y-4">
               <div>
                 <h2 className="font-black text-3xl mb-3">Synposis</h2>
-                {show.summary && (
-                  <div
-                    className="leading-relaxed text-lg"
-                    dangerouslySetInnerHTML={{ __html: sanitize(show.summary) }}
-                  />
-                )}
+                {show.summary && <ShowSynopsis summary={show.summary} />}
               </div>
               <div className="flex flex-wrap">
                 <Tag>{show.language}</Tag>
                 <Tag>{show.type}</Tag>
-                {show.genres.map((genre) => (
-                  <Tag>{genre}</Tag>
+                {show.genres.map((genre, i) => (
+                  <Tag key={i}>{genre}</Tag>
                 ))}
               </div>
             </div>
@@ -151,11 +148,11 @@ export default async function Page({
           </Container>
           <h2 className="font-black text-3xl mb-3">Reviews</h2>
           <Container className="hidden sm:block space-y-4">
-            <AddReviewBox session={session} />
+            <AddReviewBox user={user} />
             <ReviewCard rating={8} />
           </Container>
           <div className="sm:hidden space-y-4">
-            <AddReviewBox session={session} />
+            <AddReviewBox user={user} />
             <ReviewCard rating={8} />
           </div>
         </Container>
